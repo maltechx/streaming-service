@@ -1,0 +1,4 @@
+cache/certs/*
+cache/www/cache/*
+ingest/recordings/*
+ingest/certs/*

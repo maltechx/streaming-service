@@ -1,0 +1,46 @@
+<html>
+
+  <head>
+    <style>
+	body {
+	   background: #161618;
+	}
+	h1 {
+	  font-family: 'Exo 2', sans-serif;
+	  color: #ffffff;
+	  font-size: 60px;
+	}
+    </style>
+    <title>Stream</title>
+  </head>
+
+  <body>
+      <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+      <center>
+          <h1>Stream</h1>
+          <video height="600" id="video" controls></video>
+      </center>
+
+      <script>
+        if(Hls.isSupported()) {
+          var video = document.getElementById('video');
+          var hls = new Hls({
+              debug: true
+          });
+          hls.loadSource('https://edge.example.com/live/streamkey.m3u8');
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MEDIA_ATTACHED, function() {
+            video.muted = true;
+            video.play();
+        });
+       }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = 'https://edge.example.com/live/streamkey.m3u8';
+          video.addEventListener('canplay',function() {
+            video.play();
+          });
+        }
+      </script>
+
+</html>
