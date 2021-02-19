@@ -1,4 +1,7 @@
 cache/certs/*
+!cache/certs/.gitkeep 
 cache/www/cache/*
+!cache/www/cache/.gitkeep 
 ingest/recordings/*
 ingest/certs/*
+!ingest/certs/.gitkeep 

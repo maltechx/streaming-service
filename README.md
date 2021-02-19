@@ -1,6 +1,6 @@
 # Streaming-service
 
-This is a collection of docker containers to run an easy to deploy streaming site. I used this to provide stream an event during the pandemic. It constist of a nginx with rtmp support and two normal nginx to serve the video content (hls stream).
+This is a collection of docker containers to run an easy to deploy streaming site. I used this to provide a livestream for an event during the pandemic. It consist of a nginx with rtmp support and two normal nginx to act as caching server. They reduced the network load on the main (ingest) server.
 
 ## How to run this service
 
@@ -8,10 +8,11 @@ This is a collection of docker containers to run an easy to deploy streaming sit
 
 To run this service you would at least need three machines. On needs more power than the others because it serves as ingest and transcoding server, the other two can have less power because they only distribute the video feed.
 
-### Edit configs to your needs
+### Edit configs
 
-You only need to change the ninx.conf for your needs. 
+You only need to change the nginx.conf for your needs. 
 
 ### Running
 
-Copy the cache dir on to the machines dedicated to serve the content and the ingest server on the other machine.
+This uses docker to run the nginx services, so you should have docker and docker-compose already installed.
+First clone the repo on all servers. On the ingest server cd into `ingest` and on the caching server into `cache`. Now edit the nginx.conf to your needs, maybe add certificates and start the docker container with `docker-compose up -d`. 
